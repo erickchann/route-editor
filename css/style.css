@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    animation: pop-animation .2s forwards;
+    transform-origin: 0 0;
+}
+
+.box {
+    height: 82px;
+    width: 82px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    position: relative;
+    background-color: white;
+}
+
+.box .area {
+    opacity: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.box .area:hover {
+    background-color: cornflowerblue;
+}
+
+.area span {
+    transform: rotate(-45deg);
+}
+
+button {
+    opacity: 0;
+    padding: .4em .8em;
+    border: none;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.area.show {
+    animation: hover-animation .2s forwards;
+}
+
+button.show {
+    animation: hover-animation .2s forwards;
+}
+
+.btn-edit {
+    margin-bottom: .5rem;
+}
+
+.btn-edit:hover {
+    background-color: yellow;
+}
+
+.btn-delete {
+    margin-top: .5rem;
+}
+
+.btn-delete:hover {
+    background-color: rgb(255, 36, 36);
+    color: white;
+}
+
+canvas {
+    position: absolute;
+    z-index: -10;
+}
+
+@keyframes hover-animation {
+    0% {
+        display: block;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+
+@keyframes pop-animation {
+    0% {
+        transform: scale(0) translate(-50%, -50%);
+    }
+
+    100% {
+        transform: scale(1) rotate(45deg) translate(-50%, -50%);
+    }
+}
