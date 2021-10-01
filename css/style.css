@@ -57,7 +57,7 @@ body {
     transform: rotate(-45deg);
 }
 
-button {
+.wrapper button {
     opacity: 0;
     padding: .4em .8em;
     border: none;
@@ -93,6 +93,78 @@ button.show {
 canvas {
     position: absolute;
     z-index: -10;
+}
+
+.btn-mode {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 10;
+}
+
+.modal {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 100;
+}
+
+.modal-form {
+    width: 600px;
+    padding: 1.5rem 2rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.btn-close {
+    align-self: flex-end;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+input {
+    margin-bottom: 1rem;
+}
+
+.presentation {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgray;
+    z-index: 100;
+}
+
+.present-content {
+    width: 600px;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.btn-group button {
+    width: 20%;
 }
 
 @keyframes hover-animation {

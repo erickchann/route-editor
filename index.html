@@ -8,9 +8,25 @@
     <title>Route Editor - Test 1</title>
 </head>
 <body>
+    <button type="button" class="btn-mode" onclick="openPresentation()">Presentation Mode</button>
+    
+    <div class="modal" aria-modal="true">
+        <div class="modal-form">
+            
+        </div>
+    </div>
     
     <canvas></canvas>
     <div class="container"></div>
+    
+    <div class="presentation">
+        <button type="button" class="btn-mode" onclick="closePresentation()">Editor Mode</button>
+
+        <div class="present-content">
+            <div class="btn-group"></div>
+            <p></p>
+        </div>
+    </div>
 
     <script src="src/Line.js"></script>
     <script src="src/Node.js"></script>

@@ -1,7 +1,9 @@
 class App {
     constructor() {
-        this.data = [];
+        this.nodes = [];
         this.lines = [];
+
+        this.display = null;
 
         this.init();
     }
@@ -10,7 +12,8 @@ class App {
         let x = document.body.offsetWidth / 2;
         let y = document.body.offsetHeight / 2;
         
-        this.data.push(new Node(x, y));
+        this.nodes.push(new Node(x, y));
+        this.display = this.nodes[0];
 
         this.getElement();
     }
@@ -19,28 +22,41 @@ class App {
        wrappers = document.querySelectorAll('.wrapper');
 
        this.listener();
+       console.log(this.nodes)
     }
 
     createNode(i, dir) {
-        let x, y;
+        let x, y, that;
 
         if (dir == 'top') {
             x = 0;
-            y = -200;
+            y = -150;
+            that = 1;
         } else if (dir == 'bottom') {
             x = 0;
-            y = 200;
+            y = 150;
+            that = 3;
         } else if (dir == 'right') {
-            x = 200;
+            x = 150;
             y = 0;
+            that = 2;
         } else if (dir == 'left') {
-            x = -200;
+            x = -150;
             y = 0;
+            that = 4;
         }
 
-        this.lines.push(new Line(this.data[i].x, this.data[i].y, this.data[i].x + x, this.data[i].y + y));
-        this.data.push(new Node(this.data[i].x + x, this.data[i].y + y));
+        this.nodes[i].relations.push({number: that, text: '', node: this.nodes.length});
+        this.lines.push(new Line(this.nodes[i].x, this.nodes[i].y, this.nodes[i].x + x, this.nodes[i].y + y));
+        this.nodes.push(new Node(this.nodes[i].x + x, this.nodes[i].y + y, this.getRelationNum(dir), i));
         this.getElement();
+    }
+
+    getRelationNum(dir) {
+        if (dir == 'top') return 3;
+        else if (dir == 'bottom') return 1;
+        else if (dir == 'left') return 2;
+        else if (dir == 'right') return 4;
     }
 
     listener() {
@@ -54,6 +70,21 @@ class App {
                     this.createNode(i, dir);
                 });
             }
+
+            wrapper.children[0].addEventListener('click', () => {
+                modalForm.innerHTML += `<button class="btn-close" onclick="closeModal()">x</button>`;
+
+                modalForm.innerHTML += `<div class="form-group">
+                                            <label for="content">Content</label>
+                                            <textarea id="content" rows="8" onkeydown="updateContentValue(${i}, this.value)">${this.nodes[i].content}</textarea>
+                                        </div>`;
+
+                this.nodes[i].relations.forEach((relation, j) => {
+                    modalForm.innerHTML += `<input placeholder="Relation ${relation.number}" value="${relation.text}" onkeyup="updateRelationValue(${i}, ${j}, this.value)">`;
+                });
+                
+                openModal();
+            });
 
             wrapper.addEventListener('mouseover', () => {
                 wrapper.children[0].classList.add('show');
