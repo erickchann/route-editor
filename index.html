@@ -8,29 +8,78 @@
     <title>Route Editor - Test 1</title>
 </head>
 <body>
-    <button type="button" class="btn-mode" onclick="openPresentation()">Presentation Mode</button>
-    
-    <div class="modal" aria-modal="true">
-        <div class="modal-form">
-            
-        </div>
-    </div>
-    
-    <canvas></canvas>
-    <div class="container"></div>
-    
-    <div class="presentation">
-        <button type="button" class="btn-mode" onclick="closePresentation()">Editor Mode</button>
+    <!-- Wrapper -->
+    <div id="wrapper" class="wrapper">
+        <!-- Header -->
+        <header id="header" class="header">
+            <h1 class="title"><a href="">Route Editor</a></h1>
 
-        <div class="present-content">
-            <div class="btn-group"></div>
-            <p></p>
-        </div>
-    </div>
+            <nav id="navbar" class="navbar">
+                <ul id="menu" class="menu">
+                    <li><a href="" onclick="event.preventDefault(); main.switchMode(true)" class="btn btn-active" id="editor-btn">Editor Mode</a></li>
+                    <li><a href="" onclick="event.preventDefault(); main.switchMode(false)" class="btn" id="view-btn">View Mode</a></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- End Header -->
 
+        <!-- Main -->
+        <main id="main" class="main">
+            <!-- Route Editor -->
+            <section id="route-editor" class="route-editor">
+                <svg id="app" class="app"></svg>
+            </section>
+            <!-- Route Editor -->
+
+            <!-- View Mode -->
+            <section id="view-mode" class="view-mode">
+                <!-- View Content -->
+                <div id="view-content" class="view-content"></div>
+                <!-- View Content -->
+
+                <div id="view-action" class="view-action">
+                    <!-- View Relation -->
+                    <div id="view-links" class="view-links"></div>
+                    <!-- View Relation -->
+                </div>
+            </section>
+            <!-- Vide Mode -->
+        </main>
+        <!-- End Main -->
+    </div>
+    <!-- End Wrapper -->
+    
+    <!-- Modal -->
+    <div id="modal" class="modal" aria-roledescription="modal">
+
+        <!-- Modal Wrapper -->
+        <div id="modal-wrapper" class="modal-wrapper" aria-roledescription="modal-wrapper">
+
+            <div id="modal-content" aria-roledescription="modal-content" class="modal-content">
+                <textarea name="content" id="content" class="input" cols="30" rows="10"></textarea>
+            </div>
+
+            <div id="modal-section" class="modal-section" aria-roledescription="modal-section">
+                
+            </div>
+
+            <!-- Modal Action -->
+            <div class="modal-action" aria-roledescription="modal-action">
+                <a href="" onclick="event.preventDefault(); main.saveModalInput(); main.closeModal();" class="btn btn-active">Save</a>
+                <a href="" onclick="event.preventDefault(); main.closeModal();" class="btn">Cancel</a>
+            </div>
+            <!-- Modal Action -->
+
+        </div>
+        <!-- Modal Wrapper -->
+
+    </div>
+    <!-- End Modal -->
+
+    <script src="src/Svg.js"></script>
+    <script src="src/Element.js"></script>
     <script src="src/Line.js"></script>
-    <script src="src/Node.js"></script>
-    <script src="src/App.js"></script>
-    <script src="src/main.js"></script>
+    <script src="src/Main.js"></script>
+    <script src="src/script.js"></script>
 </body>
 </html>
